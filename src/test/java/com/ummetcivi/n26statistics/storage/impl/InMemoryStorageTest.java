@@ -93,7 +93,7 @@ public class InMemoryStorageTest {
     }
 
     @Test
-    public void shouldReturnStatisticsForOnlyValidTransitionsExist() {
+    public void shouldReturnStatisticsOnlyForValidTransactions() {
         Statistics expectedStatistics = new Statistics();
 
         for (int i = 0; i < 5; i++) {
@@ -104,7 +104,7 @@ public class InMemoryStorageTest {
             }
         }
 
-        Statistics statistics = underTest.getStatistics(60 * 1000 - 1 + 4);
+        Statistics statistics = underTest.getStatistics(60 * 1000 + 3);
 
         Assert.assertEquals(expectedStatistics.getCount(), statistics.getCount(), 0);
         Assert.assertEquals(expectedStatistics.getSum(), statistics.getSum(), 0);
