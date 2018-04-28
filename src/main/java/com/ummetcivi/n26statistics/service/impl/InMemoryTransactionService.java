@@ -20,7 +20,7 @@ public class InMemoryTransactionService implements TransactionService {
         long currentTime = dateProvider.getCurrentMillis();
 
         if (currentTime < transaction.getTimestamp() ||
-                currentTime > transaction.getTimestamp() + DateProvider.SIXTY_SECONDS_IN_MILLIS) {
+                currentTime > transaction.getTimestamp() + DateProvider.MILLISECONDS_IN_SIXTY_SECONDS) {
             return false;
         }
 

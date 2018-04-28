@@ -30,9 +30,8 @@ public class InMemoryStorage implements Storage {
     }
 
     /*
-        Complexity is O(60000) which is the seconds in millis, it's not related with transaction count.
+        Complexity is O(60000) which is milliseconds in minute, it's not related with transaction count.
         Can be decreased with decreasing the sensitivity
-
      */
     @Override
     public void saveTransaction(Transaction transaction) {
@@ -60,7 +59,7 @@ public class InMemoryStorage implements Storage {
         int index = (int) (currentTimestamp % ARRAY_SIZE);
 
         synchronized (LOCK) {
-            if (statisticsArray[index].getTimestamp() >= currentTimestamp - DateProvider.SIXTY_SECONDS_IN_MILLIS) {
+            if (statisticsArray[index].getTimestamp() >= currentTimestamp - DateProvider.MILLISECONDS_IN_SIXTY_SECONDS) {
                 return statisticsArray[index];
             }
         }

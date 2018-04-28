@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class DateProvider {
-    public static final int SIXTY_SECONDS_IN_MILLIS = 60 * 1000;
+    public static final int MILLISECONDS_IN_SIXTY_SECONDS = 60 * 1000;
     private final TimeZone timeZone;
 
     public DateProvider(TimeZone timeZone) {

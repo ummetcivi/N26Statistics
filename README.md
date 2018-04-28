@@ -36,7 +36,7 @@ Here is the pseudo code:
 
     Initialize:
         BEGIN
-            WINDOW_SIZE = 60*1000 (60 seconds in millis)
+            WINDOW_SIZE = 60*1000 (milliseconds in minute)
             ARRAY_SIZE = WINDOW_SIZE + 1 (Plus one is buffer)
             STATISTICS_ARRAY[ARRAY_SIZE]
             Fill each element with empty statistics
