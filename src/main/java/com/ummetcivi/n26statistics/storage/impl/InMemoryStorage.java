@@ -11,16 +11,16 @@ public class InMemoryStorage implements Storage {
     /*
         Sliding window size
      */
-    protected static final int WINDOW_SIZE = 60 * 1000;
+    static final int WINDOW_SIZE = 60 * 1000;
     /*
         +1 is A buffer for sliding window
      */
-    protected static final int ARRAY_SIZE = 60 * 1000 + 1;
+    private static final int ARRAY_SIZE = 60 * 1000 + 1;
 
     private static final Object LOCK = new Object();
 
     //Visible for testing
-    protected final Statistics[] statisticsArray;
+    final Statistics[] statisticsArray;
 
     public InMemoryStorage() {
         statisticsArray = new Statistics[ARRAY_SIZE];
