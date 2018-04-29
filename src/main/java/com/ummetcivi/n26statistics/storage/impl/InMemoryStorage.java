@@ -13,7 +13,7 @@ public class InMemoryStorage implements Storage {
      */
     static final int WINDOW_SIZE = 60 * 1000;
     /*
-        Window size times buffer for sliding window
+        Window size buffer for sliding window
      */
     private static final int ARRAY_SIZE = WINDOW_SIZE * 2;
 
