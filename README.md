@@ -59,7 +59,7 @@ Here is the pseudo code:
     getTransaction(currentTimestamp):
         BEGIN
             index = currentTimestamp % ARRAY_SIZE
-            if STATISTICS_ARRAY[index].timestamp >= currentTimestamp + 60*1000 then
+            if STATISTICS_ARRAY[index].timestamp >= currentTimestamp - 60*1000 then
                 return STATISTICS_ARRAY[index]
             else
                 return empty statistics
