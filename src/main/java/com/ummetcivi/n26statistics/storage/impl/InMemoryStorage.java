@@ -38,12 +38,12 @@ public class InMemoryStorage implements Storage {
         int index = (int) (transaction.getTimestamp() % ARRAY_SIZE);
         synchronized (LOCK) {
             IntStream.range(index, index + WINDOW_SIZE)
-                    .forEachOrdered(value -> {
-                        Statistics that = statisticsArray[value % ARRAY_SIZE];
+                    .forEachOrdered(i -> {
+                        Statistics that = statisticsArray[i % ARRAY_SIZE];
                         if (transaction.getTimestamp() - that.getTimestamp() > 1) {
                             Statistics statistics = new Statistics();
                             statistics.add(transaction.getAmount(), transaction.getTimestamp());
-                            statisticsArray[value % ARRAY_SIZE] = statistics;
+                            statisticsArray[i % ARRAY_SIZE] = statistics;
                         } else {
                             that.add(transaction.getAmount(), transaction.getTimestamp());
                         }
