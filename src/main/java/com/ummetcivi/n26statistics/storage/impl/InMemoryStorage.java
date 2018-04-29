@@ -13,9 +13,9 @@ public class InMemoryStorage implements Storage {
      */
     static final int WINDOW_SIZE = 60 * 1000;
     /*
-        +1 is A buffer for sliding window
+        Window size times buffer for sliding window
      */
-    private static final int ARRAY_SIZE = 60 * 1000 + 1;
+    private static final int ARRAY_SIZE = WINDOW_SIZE * 2;
 
     private static final Object LOCK = new Object();
 
@@ -30,7 +30,7 @@ public class InMemoryStorage implements Storage {
     }
 
     /*
-        Complexity is O(60000) which is milliseconds in minute, it's not related with transaction count.
+        Complexity is O(120000) which is 2 times of the window size. It's not related with transaction count.
         Can be decreased with decreasing the sensitivity
      */
     @Override
@@ -40,7 +40,7 @@ public class InMemoryStorage implements Storage {
             IntStream.range(index, index + WINDOW_SIZE)
                     .forEachOrdered(i -> {
                         Statistics that = statisticsArray[i % ARRAY_SIZE];
-                        if (transaction.getTimestamp() - that.getTimestamp() > 1) {
+                        if (transaction.getTimestamp() - that.getTimestamp() > DateProvider.MILLISECONDS_IN_SIXTY_SECONDS) {
                             Statistics statistics = new Statistics();
                             statistics.add(transaction.getAmount(), transaction.getTimestamp());
                             statisticsArray[i % ARRAY_SIZE] = statistics;

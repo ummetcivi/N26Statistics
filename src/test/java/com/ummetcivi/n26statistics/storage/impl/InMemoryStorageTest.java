@@ -58,12 +58,12 @@ public class InMemoryStorageTest {
     }
 
     @Test
-    public void shouldAddNewStatisticsWhenExistingStatisticsIsTwoMillisecondOlderThanNewOne() {
+    public void shouldAddNewStatisticsWhenExistingStatisticsIsOneMinuteOlderThanNewOne() {
         Transaction existingTransaction = TestUtils.createTransaction(0, TestConstants.ANY_AMOUNT);
         Statistics existingStatistics = new Statistics();
         existingStatistics.add(existingTransaction.getAmount(), existingTransaction.getTimestamp());
 
-        Transaction transactionToAdd = TestUtils.createTransaction(2, TestConstants.ANY_OTHER_AMOUNT);
+        Transaction transactionToAdd = TestUtils.createTransaction(2 * 60 * 1000, TestConstants.ANY_OTHER_AMOUNT);
         Statistics statisticsToAdd = new Statistics();
         statisticsToAdd.add(transactionToAdd.getAmount(), transactionToAdd.getTimestamp());
 

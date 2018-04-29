@@ -37,7 +37,7 @@ Here is the pseudo code:
     Initialize:
         BEGIN
             WINDOW_SIZE = 60*1000 (milliseconds in minute)
-            ARRAY_SIZE = WINDOW_SIZE + 1 (Plus one is buffer)
+            ARRAY_SIZE = WINDOW_SIZE * 2
             STATISTICS_ARRAY[ARRAY_SIZE]
             Fill each element with empty statistics
         END
@@ -49,7 +49,7 @@ Here is the pseudo code:
             // Re-calculate all statistics between index to index+WINDOW_SIZE
             for i=index, i<index+WINDOW_SIZE, i++
                 current_statistics = STATISTICS_ARRAY[i % ARRAY_SIZE]
-                if transaction.timestamp > current_statistics.timestamp-1 then
+                if transaction.timestamp - current_statistics.timestamp > 60*1000 then
                     create new statistics with transaction and add to array
                 else
                     add transaction into current statistics
