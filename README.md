@@ -69,7 +69,7 @@ Run Project
 -----------
 In order to run project, just run command below under root folder:
 
-        ./mvnw boot run -Dserver.port=9080
+        ./mvnw spring-boot:run -Dserver.port=9080
 
 Then you can access to the endpoints from `http://localhost:9080`
 
